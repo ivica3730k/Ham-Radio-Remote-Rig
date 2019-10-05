@@ -1,8 +1,9 @@
 import pyaudio
 import socket
+import sys
 def main():
     # PYAUDIO SETTINGS-------------------------------------------------------------------------------------------
-    CHUNK = 1024
+    CHUNK = 128
     FORMAT = pyaudio.paInt16
     MONO = 1
     RATE = 20000
@@ -18,6 +19,7 @@ def main():
 
     while True:
         datasend = send_stream.read(CHUNK)
+        #print(sys.getsizeof(datasend))
         sock.sendto(datasend,(rxer_ip,rxer_port))
 
    
