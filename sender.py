@@ -10,7 +10,7 @@ def main():
     send_stream = AUDIO.open(format=FORMAT, channels=MONO, rate=RATE, input=True, frames_per_buffer=CHUNK) 
     # PYAUDIO SETTINGS-------------------------------------------------------------------------------------------
     # NETWORK SETTINGS-------------------------------------------------------------------------------------------
-    rxer_ip = "localhost"
+    rxer_ip = "localhost" #ovdje pises adresu receivera
     rxer_port = 12345
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 

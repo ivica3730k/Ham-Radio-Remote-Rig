@@ -10,7 +10,7 @@ def main():
     recieve_stream = AUDIO.open(format=FORMAT, channels=MONO, rate=RATE, output=True, frames_per_buffer=CHUNK) 
     # PYAUDIO SETTINGS-------------------------------------------------------------------------------------------
     # NETWORK SETTINGS-------------------------------------------------------------------------------------------
-    ip = "localhost"
+    ip = "localhost" #receiver uvjek radi na localhostu, a sender se spaja na njega
     port = 12345
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
     sock.bind((ip,port))
