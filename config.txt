@@ -1,6 +1,6 @@
 {
-	"port1":"5500",
-	"port2":"5501",
-	"address":"localhost",
+	"port1":"5501",
+	"port2":"5500",
+	"address":"9a1x.ddns.net",
 	"comments":"Dont forget to switch port1 and port2 on another computer!Address you input is address of other pc,i.e. ddns"
 }

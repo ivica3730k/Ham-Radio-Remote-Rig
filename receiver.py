@@ -3,7 +3,7 @@ import socket
 import json
 def main():
     # PYAUDIO SETTINGS-------------------------------------------------------------------------------------------
-    CHUNK = 1024
+    CHUNK = 128
     FORMAT = pyaudio.paInt16
     MONO = 1
     RATE = 20000
@@ -15,16 +15,12 @@ def main():
     content = f.read()
     f.close()
     config = json.loads(content)
-    ip = "localhost" #receiver uvjek radi na localhostu, a sender se spaja na njega
     port = int(config["port1"])
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-    sock.bind((ip,port))
+    sock.bind(("0.0.0.0",port))
     # NETWORK SETTINGS-------------------------------------------------------------------------------------------
-
     while True:
         data, server = sock.recvfrom(CHUNK)
         recieve_stream.write(data)
 
-
-   
 main()

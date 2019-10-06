@@ -18,12 +18,9 @@ def main():
     rxer_ip = config["address"] #ovdje pises adresu receivera
     rxer_port = int(config["port2"])
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-
     # NETWORK SETTINGS-------------------------------------------------------------------------------------------
-
     while True:
         datasend = send_stream.read(CHUNK)
         sock.sendto(datasend,(rxer_ip,rxer_port))
 
-   
 main()
