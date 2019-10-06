@@ -1,6 +1,6 @@
 import pyaudio
 import socket
-import sys
+import json
 def main():
     # PYAUDIO SETTINGS-------------------------------------------------------------------------------------------
     CHUNK = 128
@@ -11,15 +11,18 @@ def main():
     send_stream = AUDIO.open(format=FORMAT, channels=MONO, rate=RATE, input=True, frames_per_buffer=CHUNK) 
     # PYAUDIO SETTINGS-------------------------------------------------------------------------------------------
     # NETWORK SETTINGS-------------------------------------------------------------------------------------------
-    rxer_ip = "localhost" #ovdje pises adresu receivera
-    rxer_port = 12345
+    f = open("config.txt", "r")
+    content = f.read()
+    f.close()
+    config = json.loads(content)
+    rxer_ip = config["address"] #ovdje pises adresu receivera
+    rxer_port = int(config["port2"])
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
     # NETWORK SETTINGS-------------------------------------------------------------------------------------------
 
     while True:
         datasend = send_stream.read(CHUNK)
-        #print(sys.getsizeof(datasend))
         sock.sendto(datasend,(rxer_ip,rxer_port))
 
    
