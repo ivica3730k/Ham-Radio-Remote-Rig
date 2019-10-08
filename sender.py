@@ -15,12 +15,11 @@ def main():
     content = f.read()
     f.close()
     config = json.loads(content)
-    rxer_ip = config["address"] #ovdje pises adresu receivera
+    rxer_ip = config["address"]
     rxer_port = int(config["port2"])
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
     # NETWORK SETTINGS-------------------------------------------------------------------------------------------
     while True:
-        datasend = send_stream.read(CHUNK)
+        datasend = send_stream.read(CHUNK,exception_on_overflow = False)
         sock.sendto(datasend,(rxer_ip,rxer_port))
-
 main()

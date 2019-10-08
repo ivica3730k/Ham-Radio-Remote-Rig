@@ -3,7 +3,7 @@ import socket
 import json
 def main():
     # PYAUDIO SETTINGS-------------------------------------------------------------------------------------------
-    CHUNK = 128
+    CHUNK = 512
     FORMAT = pyaudio.paInt16
     MONO = 1
     RATE = 20000
