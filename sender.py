@@ -1,9 +1,10 @@
+import time
 import pyaudio
 import socket
 import json
 def main():
     # PYAUDIO SETTINGS-------------------------------------------------------------------------------------------
-    CHUNK = 128
+    CHUNK = 32
     FORMAT = pyaudio.paInt16
     MONO = 1
     RATE = 20000
@@ -22,4 +23,5 @@ def main():
     while True:
         datasend = send_stream.read(CHUNK,exception_on_overflow = False)
         sock.sendto(datasend,(rxer_ip,rxer_port))
+        time.sleep(0.001)
 main()
