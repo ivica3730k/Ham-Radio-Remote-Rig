@@ -22,5 +22,6 @@ def main():
     while True:
         data, server = sock.recvfrom(CHUNK)
         recieve_stream.write(data)
+	
 
 main()
