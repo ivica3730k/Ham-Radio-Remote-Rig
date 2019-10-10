@@ -3,6 +3,7 @@ import pyaudio
 import socket
 import json
 def main():
+    print("starting sender!")
     # PYAUDIO SETTINGS-------------------------------------------------------------------------------------------
     CHUNK = 32
     FORMAT = pyaudio.paInt16
@@ -19,9 +20,9 @@ def main():
     rxer_ip = config["address"]
     rxer_port = int(config["port2"])
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+    sock.close()
     # NETWORK SETTINGS-------------------------------------------------------------------------------------------
     while True:
         datasend = send_stream.read(CHUNK,exception_on_overflow = False)
         sock.sendto(datasend,(rxer_ip,rxer_port))
         time.sleep(0.001)
-main()

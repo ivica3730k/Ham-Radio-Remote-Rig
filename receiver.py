@@ -3,6 +3,7 @@ import socket
 import json
 def main():
     # PYAUDIO SETTINGS-------------------------------------------------------------------------------------------
+    print("starting receiver!")
     CHUNK = 512
     FORMAT = pyaudio.paInt16
     MONO = 1
@@ -24,4 +25,3 @@ def main():
         recieve_stream.write(data)
 	
 
-main()
