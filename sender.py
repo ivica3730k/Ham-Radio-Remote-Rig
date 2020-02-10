@@ -20,7 +20,7 @@ def main():
     rxer_ip = config["address"]
     rxer_port = int(config["port2"])
     sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-    sock.close()
+    #sock.close()
     # NETWORK SETTINGS-------------------------------------------------------------------------------------------
     while True:
         datasend = send_stream.read(CHUNK,exception_on_overflow = False)
