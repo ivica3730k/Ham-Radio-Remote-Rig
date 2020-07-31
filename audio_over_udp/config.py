@@ -17,10 +17,10 @@ Configuration for client side
 
 
 class Client:
-    SERVER_IP = "9a1x.ddns.net"
+    SERVER_IP = "localhost"
     SERVER_PORT = 8081
 
 
 class Server:
-    CLIENT_IP = "80.7.58.205"
+    CLIENT_IP = "localhost"
     CLIENT_PORT = 8082
