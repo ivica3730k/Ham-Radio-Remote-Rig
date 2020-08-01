@@ -16,11 +16,13 @@ Configuration for client side
 """
 
 
-class Client:
-    SERVER_IP = "192.168.1.107"
-    SERVER_PORT = 8081
+class Node1:
+    # Node 1 must know details of Node 2, so put details of Node 2 here
+    NODE2_IP = "192.168.1.107"
+    NODE2_PORT = 8081
 
 
-class Server:
-    CLIENT_IP = "192.168.1.104"
-    CLIENT_PORT = 8082
+class Node2:
+    # Node 2 must know details of Node1, so put details of Node 1 here
+    NODE1_IP = "192.168.1.104"
+    NODE1_PORT = 8082
