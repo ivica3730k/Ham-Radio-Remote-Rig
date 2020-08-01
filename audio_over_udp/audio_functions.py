@@ -21,11 +21,13 @@ def send_audio(audio_stream, socket_connection, role, chunk=config.CHUNK):
     t1 = threading.Thread(target=record_audio, args=(audio_stream,))
     t1.start()
     while True:
-        while len(_sending_queue):
-            if role == "CLIENT":
+
+        if role == "CLIENT":
+            while len(_sending_queue):
                 socket_connection.sendto(_sending_queue.get(chunk),
                                          (config.Node1.NODE2_IP, config.Node1.NODE2_PORT))
-            else:
+        else:
+            while len(_sending_queue):
                 socket_connection.sendto(_sending_queue.get(chunk),
                                          (config.Node2.NODE1_IP, config.Node2.NODE1_PORT))
         time.sleep(1 / config.RATE)
