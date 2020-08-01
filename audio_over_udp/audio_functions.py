@@ -14,7 +14,6 @@ def receive_audio(audio_stream, socket_connection, chunk=1024):
     t1.start()
     while True:
         _received_queue.put((socket_connection.recv(chunk)))
-        time.sleep(1 / config.RATE)
 
 
 def send_audio(audio_stream, socket_connection, role, chunk=1024):
@@ -22,14 +21,18 @@ def send_audio(audio_stream, socket_connection, role, chunk=1024):
     t1.start()
     while True:
         if role == "CLIENT":
-            while len(_sending_queue):
-                socket_connection.sendto(_sending_queue.get(chunk),
-                                         (config.Node1.NODE2_IP, config.Node1.NODE2_PORT))
+            while True:
+                while len(_sending_queue):
+                    socket_connection.sendto(_sending_queue.get(chunk),
+                                             (config.Node1.NODE2_IP, config.Node1.NODE2_PORT))
+                time.sleep(0.0000001 / config.RATE)
+
         else:
-            while len(_sending_queue):
-                socket_connection.sendto(_sending_queue.get(chunk),
-                                         (config.Node2.NODE1_IP, config.Node2.NODE1_PORT))
-        time.sleep(0.01 / config.RATE)
+            while True:
+                while len(_sending_queue):
+                    socket_connection.sendto(_sending_queue.get(chunk),
+                                             (config.Node2.NODE1_IP, config.Node2.NODE1_PORT))
+                time.sleep(0.001 / config.RATE)
 
 
 def play_audio(audio_stream):
@@ -37,10 +40,8 @@ def play_audio(audio_stream):
         while len(_received_queue):
             audio_stream.write(bytes(_received_queue.get(len(_received_queue))))
         audio_stream.write(silence)
-        # time.sleep(1 / config.RATE)
 
 
-def record_audio(audio_stream, chunk=512):
+def record_audio(audio_stream, chunk=1024):
     while True:
         _sending_queue.put(audio_stream.read(chunk, exception_on_overflow=False))
-        time.sleep(1 / config.RATE)
