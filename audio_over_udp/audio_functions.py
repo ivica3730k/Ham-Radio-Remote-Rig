@@ -1,3 +1,4 @@
+import audioop
 import threading
 import time
 
@@ -44,5 +45,7 @@ def play_audio(audio_stream):
 
 def record_audio(audio_stream, chunk=config.CHUNK):
     while True:
-        _sending_queue.put(audio_stream.read(chunk, exception_on_overflow=False))
+        data = audio_stream.read(chunk, exception_on_overflow=False)
+        if audioop.rms(data, 2) > config.MIN_PICKUP:
+            _sending_queue.put(data)
         time.sleep(1 / config.RATE)
