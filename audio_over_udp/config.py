@@ -10,7 +10,7 @@ Configurations for both sides
 # Audio parameters
 
 RATE = 44100
-CHUNK = 44100
+CHUNK = 32
 
 """
 Configuration for client side
