@@ -6,10 +6,10 @@ import config
 
 _received_queue = Fifo.Fifo()
 _sending_queue = Fifo.Fifo()
-silence = chr(0) * config.CHUNK * 4
+silence = chr(0) * 1024 * 4
 
 
-def receive_audio(audio_stream, socket_connection, chunk=config.CHUNK):
+def receive_audio(audio_stream, socket_connection, chunk=1024):
     t1 = threading.Thread(target=play_audio, args=(audio_stream,))
     t1.start()
     while True:
@@ -17,7 +17,7 @@ def receive_audio(audio_stream, socket_connection, chunk=config.CHUNK):
         time.sleep(1 / config.RATE)
 
 
-def send_audio(audio_stream, socket_connection, role, chunk=config.CHUNK):
+def send_audio(audio_stream, socket_connection, role, chunk=1024):
     t1 = threading.Thread(target=record_audio, args=(audio_stream,))
     t1.start()
     while True:
@@ -29,7 +29,7 @@ def send_audio(audio_stream, socket_connection, role, chunk=config.CHUNK):
             while len(_sending_queue):
                 socket_connection.sendto(_sending_queue.get(chunk),
                                          (config.Node2.NODE1_IP, config.Node2.NODE1_PORT))
-        time.sleep(00.1 / config.RATE)
+        time.sleep(0.01 / config.RATE)
 
 
 def play_audio(audio_stream):
@@ -40,7 +40,7 @@ def play_audio(audio_stream):
         # time.sleep(1 / config.RATE)
 
 
-def record_audio(audio_stream, chunk=config.CHUNK):
+def record_audio(audio_stream, chunk=512):
     while True:
         _sending_queue.put(audio_stream.read(chunk, exception_on_overflow=False))
         time.sleep(1 / config.RATE)

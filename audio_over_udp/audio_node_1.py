@@ -6,13 +6,12 @@ import pyaudio
 import audio_functions
 import config
 
-CHUNK = config.CHUNK
 FORMAT = pyaudio.paInt16
 MONO = 1
 RATE = config.RATE
 AUDIO = pyaudio.PyAudio()
-AUDI0_INPUT_STREAM = AUDIO.open(format=FORMAT, channels=MONO, rate=RATE, input=True, frames_per_buffer=CHUNK)
-AUDIO_OUTPUT_STREAM = AUDIO.open(format=FORMAT, channels=MONO, rate=RATE, output=True, frames_per_buffer=CHUNK)
+AUDI0_INPUT_STREAM = AUDIO.open(format=FORMAT, channels=MONO, rate=RATE, input=True, frames_per_buffer=512)
+AUDIO_OUTPUT_STREAM = AUDIO.open(format=FORMAT, channels=MONO, rate=RATE, output=True, frames_per_buffer=512)
 listening_sock = socket.socket(socket.AF_INET,  # Internet
                                socket.SOCK_DGRAM)  # UDP
 listening_sock.bind(("0.0.0.0", config.Node2.NODE1_PORT))
