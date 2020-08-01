@@ -8,9 +8,9 @@ Configurations for both sides
 """
 
 # Audio parameters
-
+# Delay is approx chunk / rate in s
 RATE = 44100
-CHUNK = 256
+CHUNK = 2048
 MIN_PICKUP = 64
 
 """
