@@ -32,7 +32,7 @@ def send_audio(audio_stream, socket_connection, role, chunk=1024):
                 while len(_sending_queue):
                     socket_connection.sendto(_sending_queue.get(chunk),
                                              (config.Node2.NODE1_IP, config.Node2.NODE1_PORT))
-                time.sleep(0.001 / config.RATE)
+                time.sleep(0.0000001 / config.RATE)
 
 
 def play_audio(audio_stream):
