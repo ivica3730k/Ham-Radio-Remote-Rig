@@ -7,8 +7,10 @@ This configuration file is for both client and the server, so keep the same file
 Configurations for both sides
 """
 
-# Audio parameters, do not exceed chunk greater that 4096
+# Audio parameters
+
 RATE = 44100
+CHUNK = 44100
 
 """
 Configuration for client side
