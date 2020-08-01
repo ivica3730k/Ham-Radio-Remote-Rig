@@ -8,7 +8,7 @@ Configurations for both sides
 """
 
 # Audio parameters, do not exceed chunk greater that 4096
-CHUNK = 512
+CHUNK = 1024
 RATE = 44100
 
 """
