@@ -10,7 +10,7 @@ Configurations for both sides
 # Audio parameters
 
 RATE = 44100
-CHUNK = 64
+CHUNK = 256
 MIN_PICKUP = 64
 
 """
