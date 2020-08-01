@@ -45,3 +45,4 @@ def play_audio(audio_stream):
 def record_audio(audio_stream, chunk=1024):
     while True:
         _sending_queue.put(audio_stream.read(chunk, exception_on_overflow=False))
+        time.sleep(1 / config.RATE)
