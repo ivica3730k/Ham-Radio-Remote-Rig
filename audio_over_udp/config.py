@@ -10,7 +10,7 @@ Configurations for both sides
 # Audio parameters
 # Delay is approx chunk / rate in s
 RATE = 44100
-CHUNK = 2048
+CHUNK = 512
 MIN_PICKUP = 64
 
 """
