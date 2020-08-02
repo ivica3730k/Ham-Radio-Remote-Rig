@@ -9,6 +9,7 @@ Configurations for both sides
 
 # Audio parameters
 # Delay is approx chunk / rate in s
+NODE_NUM = 2
 RATE = 44100
 CHUNK = 512
 MIN_PICKUP = 64
@@ -22,11 +23,11 @@ class Node1:
     # Node 1 must know details of Node 2, so put details of Node 2 here
     NODE2_IP = "192.168.1.107"
     # NODE2_IP = "localhost"
-    NODE2_PORT = 8081
+    NODE2_PORT = 9999
 
 
 class Node2:
     # Node 2 must know details of Node1, so put details of Node 1 here
     NODE1_IP = "192.168.1.105"
     # NODE1_IP = "localhost"
-    NODE1_PORT = 8082
+    NODE1_PORT = 10000
