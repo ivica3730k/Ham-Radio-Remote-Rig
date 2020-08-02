@@ -20,18 +20,20 @@ def receive_audio(audio_stream, socket_connection, chunk=config.CHUNK):
             _received_queue.get(len(_received_queue) - _MAX_BUFFER_SIZE)
 
 
-def send_audio(audio_stream, socket_connection, role, chunk=config.CHUNK):
+def send_audio(audio_stream, socket_connection, node, chunk=config.CHUNK, ):
     t1 = threading.Thread(target=record_audio, args=(audio_stream,))
     t1.start()
     while True:
-        if role == "CLIENT":
+        if node == 1:
+            print("Started node 1")
             while True:
                 while len(_sending_queue):
                     socket_connection.sendto(_sending_queue.get(chunk),
                                              (config.Node1.NODE2_IP, config.Node1.NODE2_PORT))
                 time.sleep(0.1 / config.RATE)
 
-        else:
+        elif node == 2:
+            print("Started node 2")
             while True:
                 while len(_sending_queue):
                     socket_connection.sendto(_sending_queue.get(chunk),
