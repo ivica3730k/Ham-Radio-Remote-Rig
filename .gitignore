@@ -124,3 +124,5 @@ dmypy.json
 *.zip
 
 .idea/
+
+*.ini
