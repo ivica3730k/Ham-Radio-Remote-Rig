@@ -77,7 +77,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "UDP Voice by 9A3ICE"))
         self.startButton.setText(_translate("MainWindow", "Start Audio"))
         self.nodeSelect.setItemText(0, _translate("MainWindow", "Node 1"))
         self.nodeSelect.setItemText(1, _translate("MainWindow", "Node 2"))
