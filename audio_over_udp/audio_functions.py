@@ -29,16 +29,16 @@ def send_audio(audio_stream, socket_connection, node, chunk=config.CHUNK, ):
             while True:
                 while len(_sending_queue):
                     socket_connection.sendto(_sending_queue.get(chunk),
-                                             (config.Node1.NODE2_IP, config.Node1.NODE2_PORT))
-                time.sleep(0.1 / config.RATE)
+                                             (config.NODE2_IP, config.NODE2_PORT))
+                time.sleep(1 / config.RATE)
 
         elif node == 2:
             print("Started node 2")
             while True:
                 while len(_sending_queue):
                     socket_connection.sendto(_sending_queue.get(chunk),
-                                             (config.Node2.NODE1_IP, config.Node2.NODE1_PORT))
-                time.sleep(0.1 / config.RATE)
+                                             (config.NODE1_IP, config.NODE1_PORT))
+                time.sleep(1 / config.RATE)
 
 
 def play_audio(audio_stream):
@@ -51,7 +51,7 @@ def play_audio(audio_stream):
 def record_audio(audio_stream, chunk=config.CHUNK):
     while True:
         data = audio_stream.read(chunk, exception_on_overflow=False)
-        if audioop.rms(data, 2) > config.MIN_PICKUP:
+        if audioop.rms(data, 2) > config.MIN_PICKUP_LEVEL:
             _sending_queue.put(data)
             if len(_sending_queue) > _MAX_BUFFER_SIZE:
                 _sending_queue.get(len(_sending_queue) - _MAX_BUFFER_SIZE)
