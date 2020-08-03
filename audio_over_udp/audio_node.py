@@ -106,7 +106,7 @@ if __name__ == "__main__":
     ui.node2_ip.setText(str(config.NODE2_IP))
     ui.node2_port.setText(str(config.NODE2_PORT))
     ui.autostart.setChecked(config.AUTOSTART)
-    ui.squelch.setChecked(config.AUTOSTART)
+    ui.squelch.setChecked(config.SQUELCH)
     ui.startButton.clicked.connect(supervisor)
     MainWindow.show()
     sys.exit(app.exec_())
