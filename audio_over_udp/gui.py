@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(310, 299)
+        MainWindow.resize(310, 246)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -26,6 +26,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
         self.centralwidget.setSizePolicy(sizePolicy)
+        self.centralwidget.setMaximumSize(QtCore.QSize(310, 240))
         self.centralwidget.setObjectName("centralwidget")
         self.startButton = QtWidgets.QPushButton(self.centralwidget)
         self.startButton.setGeometry(QtCore.QRect(100, 10, 100, 40))
@@ -65,9 +66,6 @@ class Ui_MainWindow(object):
         self.squelch = QtWidgets.QCheckBox(self.centralwidget)
         self.squelch.setGeometry(QtCore.QRect(210, 30, 92, 23))
         self.squelch.setObjectName("squelch")
-        self.saveConfigButton = QtWidgets.QPushButton(self.centralwidget)
-        self.saveConfigButton.setGeometry(QtCore.QRect(10, 220, 281, 40))
-        self.saveConfigButton.setObjectName("saveConfigButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 310, 22))
@@ -89,7 +87,6 @@ class Ui_MainWindow(object):
         self.node1_port_label.setText(_translate("MainWindow", "Node 1 Port"))
         self.node2_port_label.setText(_translate("MainWindow", "Node 2 Port"))
         self.squelch.setText(_translate("MainWindow", "Squelch"))
-        self.saveConfigButton.setText(_translate("MainWindow", "Save Config For Next Time"))
 
 
 if __name__ == "__main__":

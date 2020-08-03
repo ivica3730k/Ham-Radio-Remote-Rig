@@ -79,7 +79,7 @@ def write_config_file(NODE1_IP, NODE1_PORT, NODE2_IP, NODE2_PORT, NODE_ID, AUTOS
     config = ConfigParser()
 
     config.read('config.ini')
-    config.add_section('main')
+    # config.add_section('main')
     config.set('main', 'node_1_ip', NODE1_IP)
     config.set('main', 'node_1_port', str(NODE1_PORT))
     config.set('main', 'node_2_ip', NODE2_IP)
@@ -90,7 +90,7 @@ def write_config_file(NODE1_IP, NODE1_PORT, NODE2_IP, NODE2_PORT, NODE_ID, AUTOS
 
     with open('config.ini', 'w') as f:
         config.write(f)
-    pass
+    read_config_file()
 
 
 if path.exists('config.ini'):
