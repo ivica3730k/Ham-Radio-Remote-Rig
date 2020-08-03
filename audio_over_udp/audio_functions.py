@@ -30,7 +30,7 @@ def send_audio(audio_stream, socket_connection, node, chunk=config.CHUNK, ):
                 while len(_sending_queue):
                     socket_connection.sendto(_sending_queue.get(chunk),
                                              (config.NODE2_IP, config.NODE2_PORT))
-                time.sleep(0.1 / config.RATE)
+                time.sleep(1 / config.RATE)
 
         elif node == 2:
             print("Started node 2")
@@ -38,7 +38,7 @@ def send_audio(audio_stream, socket_connection, node, chunk=config.CHUNK, ):
                 while len(_sending_queue):
                     socket_connection.sendto(_sending_queue.get(chunk),
                                              (config.NODE1_IP, config.NODE1_PORT))
-                time.sleep(0.1 / config.RATE)
+                time.sleep(1 / config.RATE)
 
 
 def play_audio(audio_stream):

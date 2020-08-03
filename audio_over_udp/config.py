@@ -37,8 +37,10 @@ def read_config_file():
     SQUELCH = config.getboolean('main', 'squelch')
     if SQUELCH:
         MIN_PICKUP_LEVEL = 64
+        SQUELCH = True
     else:
         MIN_PICKUP_LEVEL = 0
+        SQUELCH = False
 
 
 def init_config_file():
