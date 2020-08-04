@@ -1,9 +1,9 @@
 import socket
 import threading
 import time
-import sys
-import pyaudio
 
+import pyaudio
+import sys
 import audio_functions
 import config
 from gui import *
@@ -18,6 +18,12 @@ def start_audio():
     write_config()
     global ERROR
     ui.startButton.setDisabled(True)
+    ui.node1_ip.setDisabled(True)
+    ui.node1_port.setDisabled(True)
+    ui.node2_ip.setDisabled(True)
+    ui.node2_port.setDisabled(True)
+    ui.squelch.setDisabled(True)
+    ui.nodeSelect.setDisabled(True)
     FORMAT = pyaudio.paInt16
     MONO = 1
     RATE = config.RATE
@@ -98,6 +104,10 @@ def supervisor():
     t1.start()
 
 
+def autostart():
+    write_config()
+
+
 if __name__ == "__main__":
     ui.setupUi(MainWindow)
     ui.nodeSelect.setCurrentIndex(config.NODE_ID)
@@ -108,5 +118,8 @@ if __name__ == "__main__":
     ui.autostart.setChecked(config.AUTOSTART)
     ui.squelch.setChecked(config.SQUELCH)
     ui.startButton.clicked.connect(supervisor)
+    ui.autostart.clicked.connect(autostart)
+    if config.AUTOSTART:
+        supervisor()
     MainWindow.show()
     sys.exit(app.exec_())

@@ -35,6 +35,7 @@ def read_config_file():
     NODE2_PORT = config.getint('main', 'node_2_port')
     NODE_ID = config.getint('main', 'node_id')
     SQUELCH = config.getboolean('main', 'squelch')
+    AUTOSTART = config.getboolean('main', 'autostart')
     if SQUELCH:
         MIN_PICKUP_LEVEL = 64
         SQUELCH = True
