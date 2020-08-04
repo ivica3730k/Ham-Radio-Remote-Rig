@@ -9,6 +9,7 @@ _received_queue = Fifo.Fifo()
 _sending_queue = Fifo.Fifo()
 silence = chr(0) * 1024 * 4
 _MAX_BUFFER_SIZE = int(config.RATE / 10)
+_DELAY_RATE = 1 / config.RATE
 
 
 def receive_audio(audio_stream, socket_connection, chunk=config.CHUNK):
@@ -30,7 +31,7 @@ def send_audio(audio_stream, socket_connection, node, chunk=config.CHUNK, ):
                 while len(_sending_queue):
                     socket_connection.sendto(_sending_queue.get(chunk),
                                              (config.NODE2_IP, config.NODE2_PORT))
-                time.sleep(1 / config.RATE)
+                time.sleep(_DELAY_RATE)
 
         elif node == 2:
             print("Started node 2")
@@ -38,7 +39,7 @@ def send_audio(audio_stream, socket_connection, node, chunk=config.CHUNK, ):
                 while len(_sending_queue):
                     socket_connection.sendto(_sending_queue.get(chunk),
                                              (config.NODE1_IP, config.NODE1_PORT))
-                time.sleep(1 / config.RATE)
+                time.sleep(_DELAY_RATE)
 
 
 def play_audio(audio_stream):
@@ -55,4 +56,4 @@ def record_audio(audio_stream, chunk=config.CHUNK):
             _sending_queue.put(data)
             if len(_sending_queue) > _MAX_BUFFER_SIZE:
                 _sending_queue.get(len(_sending_queue) - _MAX_BUFFER_SIZE)
-        time.sleep(1 / config.RATE)
+        time.sleep(_DELAY_RATE)
